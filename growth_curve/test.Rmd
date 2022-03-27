@@ -1,0 +1,65 @@
+
+
+```{r}
+library(rsconnect)
+rsconnect::setAccountInfo(name='dufourlab', token='E108338C230BB0CD1271F9A16D6C7062', secret='N1NcqDIPsdnXcqn1ywlZeiXtoZL/FamGryuwPnar')
+
+```
+
+```{r}
+library(shiny)
+runApp()
+```
+
+```{r}
+library(rjags)
+library(ggplot2)
+library(tidyverse)
+library(tidybayes)
+
+experimental_precision = 100
+time_points = seq(0,100,5)
+initial_OD = 0.01
+proportion_dead_cells = 0.1
+growth_rate = 0.125
+carrying_capacity = 0.8
+
+OD <- (initial_OD * proportion_dead_cells + carrying_capacity * exp(growth_rate * time_points) / (exp(growth_rate * time_points) - 1 + carrying_capacity / (initial_OD * (1 - proportion_dead_cells)))) + rnorm(length(time_points),0,sqrt(1/experimental_precision))
+       
+growth_curve = data.frame(time_points = time_points, OD = OD)
+ggplot(growth_curve,aes(x = time_points, y = OD)) + geom_point()
+
+growth_curve = list("time_points" = time_points, "OD" = OD, "N" = length(OD))
+params_inits = list("experimental_precision" = 10000, "initial_OD" = 0.01, "proportion_dead_cells" = 0.1, "growth_rate" = 0.125, "carrying_capacity" = 1)
+model <- jags.model("growth_model2.bug", data=growth_curve, inits = params_inits, n.chains=4)
+
+update(model, n.iter=10000)
+samples <- coda.samples(model, variable.names=c("experimental_precision", "initial_OD", "proportion_dead_cells", "growth_rate", "carrying_capacity"),n.iter=100, thin = 10)
+
+
+summary(samples)
+plot(samples)
+
+samples = do.call(rbind.data.frame, samples)
+
+test = samples %>% mutate(std = sqrt(1/experimental_precision)) %>% select(-experimental_precision) %>% gather()
+
+ggplot(test, aes(x = value, y = key)) +
+  geom_eyeh()
+
+
+samples_data = samples
+p = ggplot()
+time_points_fine = time_points
+for (i in seq(1,40,1)) {
+  i = 1
+    OD_fit = samples_data$initial_OD[i] * samples_data$proportion_dead_cells[i] + samples_data$carrying_capacity[i] * exp(samples_data$growth_rate[i] * time_points_fine) / (exp(samples_data$growth_rate[i] * time_points_fine) - 1 + samples_data$carrying_capacity[i] / (samples_data$initial_OD[i] * (1 - samples_data$proportion_dead_cells[i])))
+}
+print(p)
+```
+
+
+```{r}
+deployApp()
+terminateApp('dufourlabshinyapps')
+```

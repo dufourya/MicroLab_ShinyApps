@@ -1,0 +1,10 @@
+name: shinymicrolab
+title:
+username:
+account: dufourlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1065445
+bundleId: 2287082
+url: https://dufourlab.shinyapps.io/shinymicrolab/
+when: 1564769586.72883

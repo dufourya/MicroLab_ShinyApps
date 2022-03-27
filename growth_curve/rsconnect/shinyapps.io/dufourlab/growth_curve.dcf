@@ -1,0 +1,13 @@
+name: growth_curve
+title: growth_curve
+username:
+account: dufourlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1069894
+bundleId: 2329695
+url: https://dufourlab.shinyapps.io/growth_curve/
+when: 1566072001.29719
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: MMG 302 Spring 2019 Isolate Information.csv|test.Rmd

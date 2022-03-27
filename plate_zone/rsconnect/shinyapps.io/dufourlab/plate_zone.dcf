@@ -1,0 +1,13 @@
+name: plate_zone
+title: plate_zone
+username:
+account: dufourlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1163949
+bundleId: 2400845
+url: https://dufourlab.shinyapps.io/plate_zone/
+when: 1568062963.05559
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: test.R

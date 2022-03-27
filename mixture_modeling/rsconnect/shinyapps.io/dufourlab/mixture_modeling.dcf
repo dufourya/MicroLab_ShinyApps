@@ -1,0 +1,12 @@
+name: mixture_modeling
+title: mixture_modeling
+username:
+account: dufourlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1288098
+bundleId: 2469623
+url: https://dufourlab.shinyapps.io/mixture_modeling/
+when: 1570221370.50262
+asMultiple: FALSE
+asStatic: FALSE

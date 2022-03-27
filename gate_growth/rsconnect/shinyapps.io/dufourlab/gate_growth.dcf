@@ -1,0 +1,13 @@
+name: gate_growth
+title: gate_growth
+username:
+account: dufourlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1207619
+bundleId: 2462881
+url: https://dufourlab.shinyapps.io/gate_growth/
+when: 1570034129.23759
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: growth_model.bug|test.R

@@ -1,0 +1,11 @@
+model {
+  for (i in 1:N) {
+    OD[i] ~ dnorm(mu[i], exp(experimental_precision))
+    mu[i] <- initial_OD * proportion_dead_cells + carrying_capacity * 2^(time_points[i] / growth_rate) / (2^(time_points[i]/growth_rate) - 1 + carrying_capacity / (initial_OD * (1 - proportion_dead_cells)))
+  }
+  experimental_precision ~ dunif(5,10)
+  initial_OD ~ dunif(0,1)
+  proportion_dead_cells ~ dunif(0,1)
+  growth_rate ~ dunif(15,75)
+  carrying_capacity ~ dunif(0,1)
+}

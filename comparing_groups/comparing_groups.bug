@@ -1,0 +1,25 @@
+model {
+  # likelihood
+  for (i in 1:n) {
+    Data[i] ~ dt(mu[i], tau, 2)
+    mu[i] <- d[Group[i]] + f1[Factor1[i]] + f2[Factor2[i]]
+  }
+  # priors
+  sigma ~ dunif(0,100)
+  tau <- 1 / (sigma * sigma)
+  sigma_d ~ dunif(0,100)
+  tau_d <- 1 / (sigma_d * sigma_d)
+  for (j in 1:n_Group){
+    d[j] ~ dnorm(meanData,tau_d)
+  }
+  sigma_f1 ~ dunif(0,100)
+  tau_f1 <- 1 / (sigma_f1 * sigma_f1)
+  for (k in 1:n_Factor1){
+    f1[k] ~ dnorm(0, tau_f1)
+  }
+  sigma_f2 ~ dunif(0,100)
+  tau_f2 <- 1 / (sigma_f2 * sigma_f2)
+  for (l in 1:n_Factor2){
+    f2[l] ~ dnorm(0, tau_f2)
+  }
+}

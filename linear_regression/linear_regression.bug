@@ -1,0 +1,20 @@
+model {
+  # likelihood
+  for (i in 1:n) {
+    Response[i] ~ dt(mu[i], tau, 2)
+    mu[i] <- a[Group[i]] * Variable[i] + b[Group[i]]
+  }
+  # priors
+  sigma ~ dunif(0,100)
+  tau <- 1 / (sigma * sigma)
+  sigma_a ~ dunif(0,100)
+  sigma_b ~ dunif(0,100)
+  tau_a <- 1 / (sigma_a * sigma_a)
+  tau_b <- 1 / (sigma_b * sigma_b)
+  mu_a ~ dnorm(0,10)
+  mu_b ~ dnorm(0,10)
+  for (k in 1:n_Group){
+    b[k] ~ dnorm(mu_b, tau_b)
+    a[k] ~ dnorm(mu_a, tau_a)
+  }
+}

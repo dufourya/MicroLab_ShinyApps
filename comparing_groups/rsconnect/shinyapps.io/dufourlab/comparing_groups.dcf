@@ -1,0 +1,12 @@
+name: comparing_groups
+title: comparing_groups
+username:
+account: dufourlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1281293
+bundleId: 2468611
+url: https://dufourlab.shinyapps.io/comparing_groups/
+when: 1570197056.14127
+asMultiple: FALSE
+asStatic: FALSE

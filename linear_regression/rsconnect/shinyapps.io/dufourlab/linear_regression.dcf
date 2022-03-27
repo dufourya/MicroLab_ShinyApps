@@ -1,0 +1,12 @@
+name: linear_regression
+title: linear_regression
+username:
+account: dufourlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1283029
+bundleId: 2466524
+url: https://dufourlab.shinyapps.io/linear_regression/
+when: 1570132477.28786
+asMultiple: FALSE
+asStatic: FALSE

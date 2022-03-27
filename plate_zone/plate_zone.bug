@@ -1,0 +1,25 @@
+model {
+  # likelihood
+  for (i in 1:n) {
+    Zone[i] ~ dnorm(mu[i], tau)
+    mu[i] <- d[Disk[i]] + p[Plate[i]] + s[Student[i]]
+  }
+  # priors
+  sigma ~ dunif(0,100)
+  tau <- 1 / (sigma * sigma)
+  sigma_d ~ dunif(0,100)
+  tau_d <- 1 / (sigma_d * sigma_d)
+  for (j in 1:n_Disk){
+    d[j] ~ dexp(tau_d)
+  }
+  sigma_p ~ dunif(0,100)
+  tau_p <- 1 / (sigma_p * sigma_p)
+  for (k in 1:n_Plate){
+    p[k] ~ dnorm(0, tau_p)
+  }
+  sigma_s ~ dunif(0,100)
+  tau_s <- 1 / (sigma_s * sigma_s)
+  for (l in 1:n_Student){
+    s[l] ~ dnorm(0, tau_s)
+  }
+}

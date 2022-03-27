@@ -1,0 +1,12 @@
+name: rank_abundance
+title: rank_abundance
+username:
+account: dufourlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1804022
+bundleId: 4462158
+url: https://dufourlab.shinyapps.io/rank_abundance/
+when: 1618250931.06719
+asMultiple: FALSE
+asStatic: FALSE
